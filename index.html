@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta - Bienestar Emocional</title>
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-principal: #4F8F72;
+            --verde-oscuro: #326650;
+            --verde-suave: #E7F2EC;
+            --verde-claro: #F1F8F4;
+            --fondo: #F7F9F7;
+            --blanco: #FFFFFF;
+            --texto: #26352E;
+            --texto-suave: #718078;
+            --borde: #E1E9E4;
+            --amarillo: #FFF6D9;
+            --amarillo-borde: #E9C75D;
+            --sombra: 0 8px 30px rgba(38, 53, 46, 0.06);
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: "DM Sans", sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* ==============================
+           HEADER
+        ============================== */
+        header {
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid var(--borde);
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .logo-container {
+            min-width: 190px;
+        }
+        .logo-container h1 {
+            margin: 0;
+            color: var(--verde-oscuro);
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+        .logo-container p {
+            margin: 3px 0 0;
+            color: var(--texto-suave);
+            font-size: 12px;
+        }
+        /* ==============================
+           MENU
+        ============================== */
+        nav {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        nav button {
+            border: none;
+            background: transparent;
+            color: var(--texto-suave);
+            padding: 9px 13px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        nav button:hover {
+            background: var(--verde-claro);
+            color: var(--verde-oscuro);
+        }
+        nav button.active {
+            background: var(--verde-principal);
+            color: white;
+            box-shadow: 0 4px 12px rgba(79,143,114,0.22);
+        }
+        /* ==============================
+           CONTENIDO
+        ============================== */
+        main {
+            width: 100%;
+            max-width: 1050px;
+            margin: 45px auto;
+            padding: 0 25px;
+            flex: 1;
+        }
+        .section {
+            display: none;
+            background: var(--blanco);
+            padding: 42px;
+            border-radius: 18px;
+            border: 1px solid var(--borde);
+            box-shadow: var(--sombra);
+            animation: aparecer 0.25s ease;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h2 {
+            color: var(--verde-oscuro);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        h3 {
+            color: var(--verde-oscuro);
+            margin-top: 30px;
+        }
+        p {
+            line-height: 1.7;
+            color: var(--texto-suave);
+        }
+        /* ==============================
+           AVISO
+        ============================== */
+        .disclaimer {
+            background: var(--amarillo);
+            border-left: 4px solid var(--amarillo-borde);
+            padding: 16px 18px;
+            border-radius: 10px;
+            margin: 25px 0;
+            color: #665B32;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        /* ==============================
+           FORMULARIOS
+        ============================== */
+        label {
+            display: block;
+            margin-top: 22px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--texto);
+        }
+        select,
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--borde);
+            border-radius: 10px;
+            background: #FCFDFC;
+            color: var(--texto);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        select:focus,
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: var(--verde-principal);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79,143,114,0.10);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--verde-principal);
+            margin-top: 8px;
+        }
+        /* ==============================
+           BOTONES
+        ============================== */
+        .btn-action {
+            margin-top: 24px;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 10px;
+            background: var(--verde-principal);
+            color: white;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn-action:hover {
+            background: var(--verde-oscuro);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(79,143,114,0.20);
+        }
+        .btn-action:active {
+            transform: translateY(0);
+        }
+        .btn-action:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        /* ==============================
+           INICIO
+        ============================== */
+        #inicio {
+            text-align: center;
+            padding: 60px 45px;
+        }
+        #inicio h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+        #inicio > p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+        #inicio .disclaimer {
+            text-align: left;
+            max-width: 720px;
+            margin: 30px auto;
+        }
+        /* ==============================
+           RESPIRACION
+        ============================== */
+        .ejercicio-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .respiracion-box {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background:
+                radial-gradient(
+                    circle,
+                    #E7F2EC 0%,
+                    #D5E9DE 100%
+                );
+            margin: 35px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 4s ease;
+            box-shadow:
+                0 0 0 15px rgba(231,242,236,0.55),
+                0 0 0 30px rgba(231,242,236,0.25);
+        }
+        .respiracion-box.inhalar {
+            transform: scale(1.18);
+        }
+        .respiracion-box.exhalar {
+            transform: scale(0.88);
+        }
+        .respiracion-box span {
+            color: var(--verde-oscuro);
+            font-weight: 700;
+            font-size: 17px;
+        }
+        /* ==============================
+           TABLA
+        ============================== */
+        .tabla-container {
+            overflow-x: auto;
+            margin-top: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+        }
+        th,
+        td {
+            padding: 13px;
+            border-bottom: 1px solid var(--borde);
+            text-align: left;
+            font-size: 13px;
+        }
+        th {
+            background: var(--verde-claro);
+            color: var(--verde-oscuro);
+            font-weight: 600;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        td {
+            color: var(--texto-suave);
+            background: white;
+        }
+        .sin-registros {
+            text-align: center;
+            color: #999;
+            padding: 25px;
+        }
+        /* ==============================
+           LISTA AYUDA
+        ============================== */
+        ul {
+            padding-left: 20px;
+            color: var(--texto-suave);
+            line-height: 2;
+        }
+        /* ==============================
+           FOOTER
+        ============================== */
+        footer {
+            background: white;
+            border-top: 1px solid var(--borde);
+            text-align: center;
+            padding: 18px;
+            color: var(--texto-suave);
+            font-size: 12px;
+            margin-top: auto;
+        }
+        footer p {
+            margin: 0;
+            font-size: 12px;
+        }
+        /* ==============================
+           CELULAR
+        ============================== */
+        @media (max-width: 850px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                padding: 18px 15px;
+                gap: 15px;
+            }
+            .logo-container {
+                text-align: center;
+            }
+            nav {
+                justify-content: center;
+            }
+            nav button {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+            main {
+                margin: 25px auto;
+                padding: 0 12px;
+            }
+            .section {
+                padding: 25px 20px;
+                border-radius: 15px;
+            }
+            #inicio {
+                padding: 40px 20px;
+            }
+            #inicio h2 {
+                font-size: 28px;
+            }
+        }
+        @media (max-width: 500px) {
+            nav {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+            }
+            nav button {
+                width: 100%;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            .respiracion-box {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <h1>CONECTA</h1>
+        <p>Entendé lo que sentís. Cuidá tu mente.</p>
+    </div>
+    <nav>
+        <button type="button" class="menu-btn active" data-section="inicio">
+            Inicio
+        </button>
+        <button type="button" class="menu-btn" data-section="registro">
+            ¿Cómo me siento?
+        </button>
+        <button type="button" class="menu-btn" data-section="diario">
+            Diario
+        </button>
+        <button type="button" class="menu-btn" data-section="ejercicios">
+            Ejercicios
+        </button>
+        <button type="button" class="menu-btn" data-section="autoestima">
+            Autoestima
+        </button>
+        <button type="button" class="menu-btn" data-section="progreso">
+            Mi Progreso
+        </button>
+        <button type="button" class="menu-btn" data-section="ayuda">
+            SOS Ayuda
+        </button>
+    </nav>
+</header>
+<main>
+    <!-- ==============================
+         INICIO
+    ============================== -->
+    <section id="inicio" class="section active">
+        <h2>Bienvenido a Conecta 🌿</h2>
+        <p>
+            Un espacio simple para conocer tus emociones,
+            reflexionar y encontrar herramientas para cuidar
+            tu bienestar.
+        </p>
+        <div class="disclaimer">
+            <strong>Aviso importante:</strong>
+            CONECTA es una herramienta de bienestar y autoayuda.
+            No reemplaza a un psicólogo, psiquiatra ni a ningún
+            profesional de la salud.
+        </div>
+        <button
+            type="button"
+            class="btn-action"
+            id="btnComenzar">
+            Comenzar registro de hoy
+        </button>
+    </section>
+    <!-- ==============================
+         REGISTRO
+    ============================== -->
+    <section id="registro" class="section">
+        <h2>¿Cómo te sentís hoy?</h2>
+        <p>
+            Registrar cómo te sentís puede ayudarte a reconocer
+            tus emociones y entender qué las provoca.
+        </p>
+        <form id="formEmocion">
+            <label for="emocionSelect">
+                Seleccioná una emoción
+            </label>
+            <select id="emocionSelect" required>
+                <option value="">
+                    Elegí una emoción
+                </option>
+                <option value="Alegría">
+                    Alegría
+                </option>
+                <option value="Tranquilidad">
+                    Tranquilidad
+                </option>
+                <option value="Neutral">
+                    Neutral
+                </option>
+                <option value="Tristeza">
+                    Tristeza
+                </option>
+                <option value="Enojo">
+                    Enojo
+                </option>
+                <option value="Ansiedad">
+                    Ansiedad
+                </option>
+                <option value="Miedo">
+                    Miedo
+                </option>
+                <option value="Frustración">
+                    Frustración
+                </option>
+            </select>
+            <label for="intensidadRange">
+                Intensidad:
+                <span id="valIntensidad">
+                    5
+                </span>/10
+            </label>
+            <input
+                id="intensidadRange"
+                type="range"
+                min="1"
+                max="10"
+                value="5">
+            <label for="situacionText">
+                ¿Qué situación provocó esta emoción?
+            </label>
+            <textarea
+                id="situacionText"
+                rows="4"
+                placeholder="Ej: Estoy preocupado por una evaluación..."></textarea>
+            <button
+                type="submit"
+                class="btn-action">
+                Guardar registro
+            </button>
+        </form>
+    </section>
+    <!-- ==============================
+         DIARIO
+    ============================== -->
+    <section id="diario" class="section">
+        <h2>Diario emocional</h2>
+        <p>
+            Un espacio personal para escribir tus pensamientos,
+            experiencias y emociones.
+        </p>
+        <form id="formDiario">
+            <label for="diarioTitulo">
+                Título
+            </label>
+            <input
+                type="text"
+                id="diarioTitulo"
+                required
+                placeholder="Ej: Un día reflexivo">
+            <label for="diarioContenido">
+                ¿Qué ocurrió y cómo te sentiste?
+            </label>
+            <textarea
+                id="diarioContenido"
+                rows="6"
+                required
+                placeholder="Escribí libremente..."></textarea>
+            <button
+                type="submit"
+                class="btn-action">
+                Guardar entrada
+            </button>
+        </form>
+    </section>
+    <!-- ==============================
+         EJERCICIOS
+    ============================== -->
+    <section id="ejercicios" class="section">
+        <h2>Respirá y relajate</h2>
+        <p>
+            Tomate unos minutos para respirar profundamente
+            y bajar el ritmo.
+        </p>
+        <div class="ejercicio-container">
+            <div
+                id="respiracionBox"
+                class="respiracion-box">
+                <span id="textoRespiracion">
+                    Preparado
+                </span>
+            </div>
+            <button
+                type="button"
+                id="btnRespiracion"
+                class="btn-action">
+                Iniciar ejercicio
+            </button>
+        </div>
+    </section>
+    <!-- ==============================
+         AUTOESTIMA
+    ============================== -->
+    <section id="autoestima" class="section">
+        <h2>Un momento para vos</h2>
+        <p>
+            Reconocé tus cualidades y pequeños logros.
+            No hace falta que sean grandes para que importen.
+        </p>
+        <form id="formAutoestima">
+            <label for="cosasBuenas">
+                Tres cosas que me gustan de mí
+            </label>
+            <textarea
+                id="cosasBuenas"
+                rows="4"
+                required
+                placeholder="1. ...
+2. ...
+3. ..."></textarea>
+            <label for="logroHoy">
+                Algo que hice bien hoy
+            </label>
+            <input
+                type="text"
+                id="logroHoy"
+                required
+                placeholder="Ej: Ayudé a alguien">
+            <button
+                type="submit"
+                class="btn-action">
+                Guardar reflexión
+            </button>
+        </form>
+    </section>
+    <!-- ==============================
+         PROGRESO
+    ============================== -->
+    <section id="progreso" class="section">
+        <h2>Mi progreso emocional</h2>
+        <p>
+            Acá aparecen los registros que fuiste guardando.
+        </p>
+        <div class="tabla-container">
+            <table id="tablaProgreso">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Emoción</th>
+                        <th>Intensidad</th>
+                        <th>Situación</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+    <!-- ==============================
+         AYUDA
+    ============================== -->
+    <section id="ayuda" class="section">
+        <h2>Ayuda y orientación</h2>
+        <div class="disclaimer">
+            <strong>Importante:</strong>
+            CONECTA es una herramienta de bienestar y
+            autoayuda y no reemplaza la atención de un profesional.
+        </div>
+        <p>
+            Si sentís un malestar intenso o persistente,
+            hablá con una persona adulta de confianza
+            o buscá acompañamiento profesional.
+        </p>
+        <h3>¿Qué podés hacer?</h3>
+        <ul>
+            <li>Hablar con alguien de confianza.</li>
+            <li>Expresar cómo te sentís.</li>
+            <li>Evitar aislarte.</li>
+            <li>Buscar ayuda profesional cuando sea necesario.</li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <p>
+        Conecta · Proyecto de Bienestar Psicológico y Autoayuda
+    </p>
+</footer>
+<script>
+    // ==============================
+    // CAMBIO DE SECCIONES
+    // ==============================
+    function mostrarSeccion(id) {
+        const secciones =
+            document.querySelectorAll(".section");
+        secciones.forEach(function(seccion) {
+            seccion.classList.remove("active");
+        });
+        const destino =
+            document.getElementById(id);
+        if (destino) {
+            destino.classList.add("active");
+        }
+        const botones =
+            document.querySelectorAll(".menu-btn");
+        botones.forEach(function(boton) {
+            boton.classList.remove("active");
+            if (boton.dataset.section === id) {
+                boton.classList.add("active");
+            }
+        });
+        if (id === "progreso") {
+            cargarProgreso();
+        }
+    }
+    // ==============================
+    // MENÚ
+    // ==============================
+    const botonesMenu =
+        document.querySelectorAll(".menu-btn");
+    botonesMenu.forEach(function(boton) {
+        boton.addEventListener("click", function() {
+            mostrarSeccion(
+                boton.dataset.section
+            );
+        });
+    });
+    // ==============================
+    // COMENZAR
+    // ==============================
+    document
+        .getElementById("btnComenzar")
+        .addEventListener("click", function() {
+            mostrarSeccion("registro");
+        });
+    // ==============================
+    // INTENSIDAD
+    // ==============================
+    const rango =
+        document.getElementById("intensidadRange");
+    const numero =
+        document.getElementById("valIntensidad");
+    rango.addEventListener("input", function() {
+        numero.textContent =
+            rango.value;
+    });
+    // ==============================
+    // GUARDAR EMOCIÓN
+    // ==============================
+    document
+        .getElementById("formEmocion")
+        .addEventListener("submit", function(event) {
+            event.preventDefault();
+            const emocion =
+                document
+                    .getElementById("emocionSelect")
+                    .value;
+            const intensidad =
+                document
+                    .getElementById("intensidadRange")
+                    .value;
+            const situacion =
+                document
+                    .getElementById("situacionText")
+                    .value
+                    .trim();
+            if (emocion === "") {
+                alert("Seleccioná una emoción.");
+                return;
+            }
+            const registro = {
+                fecha:
+                    new Date().toLocaleString("es-AR"),
+                emocion:
+                    emocion,
+                intensidad:
+                    intensidad + "/10",
+                situacion:
+                    situacion || "-"
+            };
+            let registros = [];
+            try {
+                registros =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "conectaRegistros"
+                        )
+                    ) || [];
+            } catch(error) {
+                registros = [];
+            }
+            registros.push(registro);
+            localStorage.setItem(
+                "conectaRegistros",
+                JSON.stringify(registros)
+            );
+            alert("Registro guardado correctamente.");
+            document
+                .getElementById("formEmocion")
+                .reset();
+            numero.textContent = "5";
+        });
+    // ==============================
+    // PROGRESO
+    // ==============================
+    function cargarProgreso() {
+        const tbody =
+            document.querySelector(
+                "#tablaProgreso tbody"
+            );
+        tbody.innerHTML = "";
+        let registros = [];
+        try {
+            registros =
+                JSON.parse(
+                    localStorage.getItem(
+                        "conectaRegistros"
+                    )
+                ) || [];
+        } catch(error) {
+            registros = [];
+        }
+        if (registros.length === 0) {
+            const fila =
+                document.createElement("tr");
+            const celda =
+                document.createElement("td");
+            celda.colSpan = 4;
+            celda.textContent =
+                "No hay registros guardados todavía.";
+            celda.className =
+                "sin-registros";
+            fila.appendChild(celda);
+            tbody.appendChild(fila);
+            return;
+        }
+        registros
+            .slice()
+            .reverse()
+            .forEach(function(registro) {
+                const fila =
+                    document.createElement("tr");
+                const fecha =
+                    document.createElement("td");
+                fecha.textContent =
+                    registro.fecha;
+                const emocion =
+                    document.createElement("td");
+                emocion.textContent =
+                    registro.emocion;
+                const intensidad =
+                    document.createElement("td");
+                intensidad.textContent =
+                    registro.intensidad;
+                const situacion =
+                    document.createElement("td");
+                situacion.textContent =
+                    registro.situacion;
+                fila.appendChild(fecha);
+                fila.appendChild(emocion);
+                fila.appendChild(intensidad);
+                fila.appendChild(situacion);
+                tbody.appendChild(fila);
+            });
+    }
+    // ==============================
+    // DIARIO
+    // ==============================
+    document
+        .getElementById("formDiario")
+        .addEventListener("submit", function(event) {
+            event.preventDefault();
+            const titulo =
+                document
+                    .getElementById("diarioTitulo")
+                    .value
+                    .trim();
+            const contenido =
+                document
+                    .getElementById("diarioContenido")
+                    .value
+                    .trim();
+            if (
+                titulo === "" ||
+                contenido === ""
+            ) {
+                alert(
+                    "Completá el título y el contenido."
+                );
+                return;
+            }
+            let entradas = [];
+            try {
+                entradas =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "conectaDiario"
+                        )
+                    ) || [];
+            } catch(error) {
+                entradas = [];
+            }
+            entradas.push({
+                titulo: titulo,
+                contenido: contenido,
+                fecha:
+                    new Date().toLocaleString("es-AR")
+            });
+            localStorage.setItem(
+                "conectaDiario",
+                JSON.stringify(entradas)
+            );
+            alert(
+                "Entrada del diario guardada."
+            );
+            event.target.reset();
+        });
+    // ==============================
+    // AUTOESTIMA
+    // ==============================
+    document
+        .getElementById("formAutoestima")
+        .addEventListener("submit", function(event) {
+            event.preventDefault();
+            const cosas =
+                document
+                    .getElementById("cosasBuenas")
+                    .value
+                    .trim();
+            const logro =
+                document
+                    .getElementById("logroHoy")
+                    .value
+                    .trim();
+            if (
+                cosas === "" ||
+                logro === ""
+            ) {
+                alert(
+                    "Completá los dos campos."
+                );
+                return;
+            }
+            let reflexiones = [];
+            try {
+                reflexiones =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "conectaAutoestima"
+                        )
+                    ) || [];
+            } catch(error) {
+                reflexiones = [];
+            }
+            reflexiones.push({
+                cosas: cosas,
+                logro: logro,
+                fecha:
+                    new Date().toLocaleString("es-AR")
+            });
+            localStorage.setItem(
+                "conectaAutoestima",
+                JSON.stringify(reflexiones)
+            );
+            alert(
+                "Reflexión guardada correctamente."
+            );
+            event.target.reset();
+        });
+    // ==============================
+    // RESPIRACIÓN
+    // ==============================
+    let respirando = false;
+    document
+        .getElementById("btnRespiracion")
+        .addEventListener("click", function() {
+            if (respirando) {
+                return;
+            }
+            respirando = true;
+            const texto =
+                document.getElementById(
+                    "textoRespiracion"
+                );
+            const caja =
+                document.getElementById(
+                    "respiracionBox"
+                );
+            const boton =
+                document.getElementById(
+                    "btnRespiracion"
+                );
+            boton.disabled = true;
+            texto.textContent =
+                "Inhalá...";
+            caja.classList.add(
+                "inhalar"
+            );
+            setTimeout(function() {
+                texto.textContent =
+                    "Mantené...";
+                setTimeout(function() {
+                    texto.textContent =
+                        "Exhalá...";
+                    caja.classList.remove(
+                        "inhalar"
+                    );
+                    caja.classList.add(
+                        "exhalar"
+                    );
+                    setTimeout(function() {
+                        texto.textContent =
+                            "¡Muy bien!";
+                        caja.classList.remove(
+                            "exhalar"
+                        );
+                        boton.disabled = false;
+                        boton.textContent =
+                            "Repetir ejercicio";
+                        respirando = false;
+                    }, 4000);
+                }, 4000);
+            }, 4000);
+        });
+    // ==============================
+    // INICIALIZAR
+    // ==============================
+    cargarProgreso();
+</script>
+</body>
+</html>
